@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function () {
-  this.route('capture', function CaptureRoute() {
+  this.route('capture', { path: '/' }, function CaptureRoute() {
     this.route('index', { path: '/' }, function() {
       this.route('now');
       this.route('list');

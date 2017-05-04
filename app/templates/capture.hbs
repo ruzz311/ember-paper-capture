@@ -1,3 +1,35 @@
 CAPTURE
 
+<div style="position: fixed; bottom: 1rem; right: 1rem;">
+  {{#paper-menu position="target-right target" as |menu|}}
+    {{#menu.trigger}}
+      {{#paper-button raised=true fab=true primary=true}}{{paper-icon "menu"}}{{/paper-button}}
+    {{/menu.trigger}}
+
+    {{#menu.content width=4 as |content|}}
+      {{#content.menu-item onClick=(action (transition-to 'capture.index'))}}
+        <p style="width: 190px;">Home</p> {{paper-icon 'home' class="md-menu-align-target"}}
+      {{/content.menu-item}}
+
+      {{#content.menu-item onClick=(action (transition-to 'capture.index.now'))}}
+        <p style="width: 190px;">Capture now</p> {{paper-icon 'camera' class="md-menu-align-target"}}
+      {{/content.menu-item}}
+
+      {{#content.menu-item onClick="gotoRoute" disabled=true}}
+        <p style="width: 190px;">This is disabled.</p> {{paper-icon "adb" class="md-menu-align-target"}}
+      {{/content.menu-item}}
+
+      {{paper-divider}}
+
+      {{!--
+      {{#each items as |item|}}
+        {{#content.menu-item onClick="openSomething"}}
+          {{paper-icon item.icon}} {{item.title}}
+        {{/content.menu-item}}
+      {{/each}}
+      --}}
+    {{/menu.content}}
+  {{/paper-menu}}
+</div>
+
 {{outlet}}
