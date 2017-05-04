@@ -1,14 +1,12 @@
 > SHOW
 {{!--{{outlet}}--}}
 
-
 <div class="layout-row layout-xs-column">
-  <div class="layout-column flex-xs flex-gt-xs-50">
+  <div class="layout-column flex-xs flex-gt-sm-50">
     {{#paper-card as |card|}}
       {{card.image src="washedout-70b84b894d88b367d49d56a8cd808cca.png"
                    alt="Washed Out"
                    title="Washed Out"}}
-
       {{#card.title as |title|}}
         {{#title.text as |text|}}
           {{#text.headline}}In-card mixed actions{{/text.headline}}
