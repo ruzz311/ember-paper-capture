@@ -16,10 +16,19 @@ function createDb() {
     let remoteDb = new PouchDB(config.emberPouch.remoteDb);
 
     db.sync(remoteDb, {
-      live: true,
-      retry: true
+      live  : true,
+      retry : true
     });
   }
+
+  db.createIndex({
+    index : {
+      fields : ['data.id', 'data.model']
+    }
+  }).then((result) => {
+    // {'result': 'created'} index was created
+    Ember.debug(`db.createIndex success: ${result.result}`);
+  });
 
   return db;
 }

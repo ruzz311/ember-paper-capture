@@ -1,8 +1,8 @@
 > LIST
 {{outlet}}
 
-<div class="layout-row layout-align-center-center">
-  {{#unless captures}}
+{{#unless model.captures}}
+  <div class="layout-row layout-align-center-center">
     {{#paper-card as |card|}}
       {{card.image src="http://www.fillmurray.com/800/300"
                    alt="fillmurray placeholder"
@@ -23,36 +23,37 @@
       {{/card.content}}
 
       {{#card.actions}}
-        {{#paper-button onClick=(action (transition-to 'capture.index.now'))}}+ Create Moment{{/paper-button}}
+        {{#paper-button onClick=(action (transition-to 'capture.index.now'))}}
+          + Create Moment{{/paper-button}}
       {{/card.actions}}
     {{/paper-card}}
-  {{/unless}}
+  </div>
+{{/unless}}
 
-  {{#if captures}}
-    {{#each captures as |capture|}}
-      <div class="layout-column flex-xs flex-gt-sm-25">
-        {{#paper-card as |card|}}
-          {{#card.title as |title|}}
-            {{#title.text as |text|}}
-              {{#text.headline}}Capture Headline{{/text.headline}}
-              {{#text.subhead}}Capture subheading{{/text.subhead}}
-            {{/title.text}}
-          {{/card.title}}
+<div class="layout-row layout-column-xs">
+  {{#each model.captures as |capture|}}
+    {{#paper-card as |card|}}
+      {{#each capture.images as |img|}}
+        {{card.image src=img.data alt=img.name title=img.name}}
+      {{/each}}
 
-          {{#card.content class="layout-row layout-align-space-between"}}
-            {{#card.media size="xl"}}
-              <div class="card-media"></div>
-            {{/card.media}}
-            {{#card.actions class="layout-column"}}
-              {{#paper-button iconButton=true}}{{paper-icon "favorite"}}{{/paper-button}}
-              {{#paper-button iconButton=true}}{{paper-icon "settings"}}{{/paper-button}}
-              {{#paper-button iconButton=true}}{{paper-icon "share"}}{{/paper-button}}
-            {{/card.actions}}
-          {{/card.content}}
-        {{/paper-card}}
-      </div>
-    {{/each}}
-  {{/if}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{capture.title}}{{/text.headline}}
+        {{/title.text}}
+      {{/card.title}}
+      {{#card.content}}
+        <p>
+          The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+          two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+        </p>
+      {{/card.content}}
+      {{#card.actions}}
+        {{#paper-button}}Action 1{{/paper-button}}
+        {{#paper-button}}Action 2{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+  {{/each}}
 </div>
 
 {{!--

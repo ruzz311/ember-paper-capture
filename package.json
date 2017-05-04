@@ -8,12 +8,12 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "git@github.com:ruzz311/ember-paper-capture.git",
   "scripts": {
     "build": "ember build",
-    "start": "ember server",
+    "start": "ember server -lrp 5500",
     "test": "ember test",
-    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" --environment=production; git push; git checkout -"
+    "deploy": "ember github-pages:commit --message \"Deploy gh-pages | commit $(git rev-parse HEAD)\" --environment=production && git push && git checkout -"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

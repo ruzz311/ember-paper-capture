@@ -12,34 +12,31 @@ EmberWebcam.reopen({
     this.set('camera', {
       snap     : this.snap.bind(this),
       freeze   : this.freeze.bind(this),
-      unfreeze : this.unfreeze.bind(this)
+      unfreeze : this.unfreeze.bind(this),
+      isFrozen: false
     });
   },
 
   // any options you want to Webcam.set(key, val);
   webcamOptions : {
-    // width: 640,
-    // height: 480,
-    dest_width: 640,
-    dest_height: 480,
-    flip_horiz: true// flip horizontal (mirror mode)
+    width: 640,
+    height: 480,
+    // dest_width: 640,
+    // dest_height: 480,
+    enable_flash: false,
+    force_flash: false,
+    flip_horiz: true // mirror mode
   },
 
-  didInsertElement() {
-    const options = this.getWithDefault('webcamOptions', {});
-
-    Object.keys(options).map(key => {
-      Webcam.set(key, options[key]);
-    });
-
+  didReceiveAttrs() {
     this._super(...arguments);
+    const options = this.getWithDefault('webcamOptions', {});
+    Webcam.set(options);
   },
 
   freeze () {
     Webcam.freeze();
-
-    this.set('isFrozen', true);
-
+    this.set('camera.isFrozen', true);
     if (!this.isDestroying && !this.isDestroyed) {
       this.get('didFreeze')(Webcam);
     }
@@ -47,9 +44,7 @@ EmberWebcam.reopen({
 
   unfreeze() {
     Webcam.unfreeze();
-
-    this.set('isFrozen', false);
-
+    this.set('camera.isFrozen', false);
     if (!this.isDestroying && !this.isDestroyed) {
       this.get('didUnfreeze')(Webcam);
     }

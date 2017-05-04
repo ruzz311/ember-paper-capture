@@ -32,11 +32,13 @@ module.exports = function (environment) {
       'media-src'   : "'self'"
     },
 
-    emberPouch : {}
+    emberPouch : {
+
+    }
   };
 
   if (environment === 'development') {
-    ENV.emberPouch.localDb = 'test';
+    ENV.emberPouch.localDb = 'early-test';
     ENV.emberPouch.remoteDb = 'http://localhost:5984/my_couch';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -54,10 +56,13 @@ module.exports = function (environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV.emberPouch.localDb = 'test';
   }
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
+    ENV.emberPouch.localDb = 'prod';
     ENV.rootURL = '/ember-paper-capture/';
 
   }
